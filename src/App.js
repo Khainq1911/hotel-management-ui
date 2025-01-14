@@ -1,11 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { router } from "./configs/router";
-import EmployeePage from "./page/employee";
+import { publicRoutes } from "./router";
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path={router.employee} Component={EmployeePage} />
+        {publicRoutes.map((route, index) => {
+          const Page = route.component;
+          return <Route key={index} path={route.path} element={<Page />} />;
+        })}
       </Routes>
     </Router>
   );
