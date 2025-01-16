@@ -5,20 +5,22 @@ import LoginPage from "./page/login";
 
 const publicRoutes = [
   {
-    path: router.home,
-    component: Home,
-  },
-  {
-    path: router.employee,
-    component: EmployeePage,
-  },
-  {
     path: router.login,
     component: LoginPage,
   },
 ];
 
-const privateRoutes = [];
-const adminRoutes = [];
+const privateRoutes = [
+  {
+    path: router.home,
+    component: Home,
+  },
+];
+const adminRoutes = [
+  {
+    path: router.employee,
+    component: EmployeePage,
+  },
+];
 
-export { publicRoutes };
+export { publicRoutes, privateRoutes, adminRoutes };
