@@ -1,5 +1,6 @@
 export const router = {
-    home: "/",
-    login: "/login",
-    employee: "/employee"
-}
+  home: "/",
+  login: "/login",
+  employee: "/employee",
+  room: "/room",
+};

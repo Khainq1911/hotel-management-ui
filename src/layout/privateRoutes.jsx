@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { isAuthentication } from "~/hooks/useAuth";
+import Header from "./components/header";
 
 function PrivateRoutes({ children }) {
   const navigate = useNavigate();
@@ -11,7 +12,12 @@ function PrivateRoutes({ children }) {
     }
   }, [navigate]);
 
-  return isAuthentication() ? <>{children}</> : null;
+  return isAuthentication() ? (
+    <>
+      <Header />
+      {children}
+    </>
+  ) : null;
 }
 
 export default PrivateRoutes;

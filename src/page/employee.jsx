@@ -113,7 +113,7 @@ export default function EmployeePage() {
           setIsModalOpen(false);
           setIsUpdating(false);
         }}
-        className="w-[60%]"
+        className="w-[1000px]"
       >
         {activeIndex === 0 && (
           <div className="flex mt-2 items-center">
@@ -185,7 +185,7 @@ export default function EmployeePage() {
               tooltip="Click to show detail"
               tooltipOptions={{ position: "left" }}
               onClick={() => {
-                console.log(rowData)
+                
                 setDefaultEmp(rowData);
                 setIsModalOpen(true);
               }}
