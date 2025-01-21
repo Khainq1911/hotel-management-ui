@@ -3,4 +3,5 @@ export const router = {
   login: "/login",
   employee: "/employee",
   room: "/room",
+  payment: "/payment",
 };

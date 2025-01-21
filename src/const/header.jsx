@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 export const items = [
   {
     label: "Home",
@@ -18,5 +16,11 @@ export const items = [
     icon: "pi pi-envelope",
     isAdmin: false,
     url: "/room",
+  },
+  {
+    label: "Payment",
+    icon: "pi pi-money-bill",
+    isAdmin: false,
+    url: "/payment",
   },
 ];

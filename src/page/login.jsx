@@ -1,4 +1,4 @@
-import logo from "~/images/login.jpg"
+import logo from "~/images/login.jpg";
 import { Image } from "primereact/image";
 import { FloatLabel } from "primereact/floatlabel";
 import { InputText } from "primereact/inputtext";
@@ -16,14 +16,13 @@ export default function LoginPage() {
     e.preventDefault();
     try {
       const res = await checkLoginService(username, password);
-      console.log(res);
-      if (res.status === 200) {
-        showToast({
-          severity: "success",
-          summary: "Login Successful",
-          detail: "Welcome back!",
-        });
-      }
+
+      showToast({
+        severity: "success",
+        summary: "Login Successful",
+        detail: "Welcome back!",
+      });
+
       localStorage.setItem("accessToken", res.accessToken);
       navigate("/");
     } catch (error) {
