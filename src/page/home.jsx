@@ -3,6 +3,7 @@ import { Card } from "primereact/card";
 import { confirmDialog, ConfirmDialog } from "primereact/confirmdialog";
 import { Dialog } from "primereact/dialog";
 import { useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import BookingForm from "~/components/booking/booking-form";
 import { ToastConfigs } from "~/configs/toast";
 import { getUser } from "~/hooks/useAuth";
@@ -10,6 +11,7 @@ import { createBookingService } from "~/services/booking-services";
 import { listRoomServices } from "~/services/roomServices";
 
 export default function Home() {
+  const navigate = useNavigate();
   const [dates, setDates] = useState([]);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [listRoom, setListRoom] = useState();
@@ -47,6 +49,7 @@ export default function Home() {
         summary: "Customer Created",
         detail: "Customer information saved successfully.",
       });
+      listRoomFunc();
       setIsOpenModal(false);
       setDates(null);
     } catch (error) {
@@ -98,8 +101,8 @@ export default function Home() {
               }}
             />
             <Button
-            outlined  
-            severity="secondary"
+              outlined
+              severity="secondary"
               label="Booking"
               className="ml-2"
               onClick={confirmBooking}
@@ -127,6 +130,9 @@ export default function Home() {
                 className="hover:scale-110 transition"
                 outlined
                 severity="success"
+                onClick={() => {
+                  navigate("/payment");
+                }}
               >
                 Thanh toan
               </Button>
@@ -152,7 +158,7 @@ export default function Home() {
               className="object-cover rounded h-[120px] hover:scale-110 transition "
             />
           }
-          className="w-[250px] h-[400px] shadow rounded overflow-hidden"
+          className="w-[280px]  shadow rounded overflow-hidden"
         >
           <div className="grid grid-cols-2">
             <strong>Cleaning:</strong>
