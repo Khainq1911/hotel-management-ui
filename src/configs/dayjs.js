@@ -7,7 +7,7 @@ dayjs.extend(timezone);
 //format here is default value , you can input other type format if you want
 export const formatDate = (
   date,
-  format = "HH:mm - DD/MM/YYYY",
+  format = "DD/MM/YYYY",
   timeZone = "Asia/Saigon"
 ) => {
   if (!dayjs(date).isValid) return date;

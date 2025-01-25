@@ -32,7 +32,7 @@ export default function Home() {
           "An error occurred while fetching rooms.",
       });
     }
-  }, [showToast]);
+  }, []);
 
   const handleBooking = async () => {
     try {
@@ -76,7 +76,7 @@ export default function Home() {
 
   useEffect(() => {
     listRoomFunc();
-  }, []);
+  }, [listRoomFunc]);
 
   return (
     <div className="grid lg:grid-cols-5 md:grid-cols-3 place-content-center place-items-center p-6 gap-6">
@@ -131,7 +131,7 @@ export default function Home() {
                 outlined
                 severity="success"
                 onClick={() => {
-                  navigate("/payment");
+                  navigate(`/payment/${room.id}`);
                 }}
               >
                 Thanh toan

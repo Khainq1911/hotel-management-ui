@@ -10,7 +10,7 @@ export default function TyperoomModal({
       <div className="flex justify-center">
         <img
           src={detailTyperoom.img_url || "/placeholder-image.jpg"}
-          alt={detailTyperoom.img_url ? "Typeroom image" : "Placeholder image"}
+          alt="typeroom"
           className="rounded shadow-lg w-full h-[200px] object-cover"
         />
       </div>

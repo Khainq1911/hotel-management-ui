@@ -4,6 +4,7 @@ import Home from "./page/home";
 import LoginPage from "./page/login";
 import PaymentPage from "./page/payment";
 import RoomPage from "./page/room";
+import ConfirmPayment from "./page/UpdatePayment";
 
 const publicRoutes = [
   {
@@ -20,6 +21,10 @@ const privateRoutes = [
   {
     path: router.payment,
     component: PaymentPage,
+  },
+  {
+    path: router.confirmPayment,
+    component: ConfirmPayment,
   },
 ];
 const adminRoutes = [

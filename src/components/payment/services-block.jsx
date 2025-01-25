@@ -6,12 +6,12 @@ import { listitemsService } from "~/services/service";
 import ServiceBill from "./service-bill";
 import { Divider } from "primereact/divider";
 
-export default function Services() {
+export default function Services({confirmedItems, setConfirmedItems}) {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [serviceItems, setServiceItems] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
   const [orderNumber, setOrderNumber] = useState([]);
-  const [confirmedItems, setConfirmedItems] = useState([]);
+ 
 
   const handleListItems = useCallback(async () => {
     try {
