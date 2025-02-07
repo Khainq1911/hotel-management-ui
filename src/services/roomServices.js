@@ -10,9 +10,23 @@ const listTyperoomServices = async () => {
   return response.data;
 };
 
+const SearchRoomService = async (q) => {
+  const response = await apiInstances.get("/room", {
+    params: {
+      q: q,
+    },
+  });
+  return response.data;
+};
+
 const updateTypeRoomServices = async (payload, id) => {
   const response = await apiInstances.put(`/typeroom/${id}`, payload);
   return response.data;
 };
 
-export { listRoomServices, listTyperoomServices, updateTypeRoomServices };
+export {
+  listRoomServices,
+  listTyperoomServices,
+  updateTypeRoomServices,
+  SearchRoomService,
+};
