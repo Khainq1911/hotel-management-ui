@@ -80,7 +80,7 @@ export default function BookingForm({
   };
 
   useEffect(() => {
-     fetchCustomerData(debouncedSearchInput);
+    fetchCustomerData(debouncedSearchInput); // eslint-disable-next-line
   }, [debouncedSearchInput]);
   useEffect(() => {
     if (dates && dates[0] && dates[1]) {

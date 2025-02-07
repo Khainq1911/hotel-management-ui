@@ -1,0 +1,9 @@
+.no-border-calendar .p-calendar {
+    border: none !important;
+    box-shadow: none !important;
+  }
+  
+  .no-border-calendar .p-datepicker {
+    border: none !important;
+    box-shadow: none !important;
+  }

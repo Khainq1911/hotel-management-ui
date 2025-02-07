@@ -18,9 +18,15 @@ export const items = [
     url: "/room",
   },
   {
-    label: "Payment",
+    label: "Scheduler",
     icon: "pi pi-money-bill",
     isAdmin: false,
-    url: "/payment",
+    url: "/scheduler",
+  },
+  {
+    label: "Shift",
+    icon: "pi pi-star",
+    isAdmin: false,
+    url: "/shift",
   },
 ];

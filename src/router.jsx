@@ -4,6 +4,8 @@ import Home from "./page/home";
 import LoginPage from "./page/login";
 import PaymentPage from "./page/payment";
 import RoomPage from "./page/room";
+import SchedulerPage from "./page/scheduler/scheduler";
+import ShiftPage from "./page/shift";
 import ConfirmPayment from "./page/UpdatePayment";
 
 const publicRoutes = [
@@ -33,8 +35,16 @@ const adminRoutes = [
     component: EmployeePage,
   },
   {
+    path: router.scheduler,
+    component: SchedulerPage,
+  },
+  {
     path: router.room,
     component: RoomPage,
+  },
+  {
+    path: router.shift,
+    component: ShiftPage,
   },
 ];
 

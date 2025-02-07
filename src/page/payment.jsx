@@ -30,7 +30,7 @@ export default function PaymentPage() {
         summary: "Error",
         detail: "Unable to fetch booking details. Please try again later.",
       });
-    }
+    } // eslint-disable-next-line
   }, [param.room_id]);
 
   const processPayment = async () => {
@@ -48,7 +48,7 @@ export default function PaymentPage() {
       });
       navigate(`/payment/confirm/${detailBooking.id}/${detailBooking.room_id}`);
     } catch (error) {
-      console.log(error)
+      console.log(error);
       showToast({
         severity: "error",
         summary: "Payment Failed",

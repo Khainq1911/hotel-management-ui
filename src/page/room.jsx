@@ -81,7 +81,7 @@ export default function RoomPage() {
 
   useEffect(() => {
     listRoomFunc();
-    listTyperoomFunc();
+    listTyperoomFunc(); // eslint-disable-next-line
   }, []);
 
   const footerContent = (

@@ -1,7 +1,7 @@
 const { default: apiInstances } = require("./axios");
 
 const listRoomServices = async () => {
-  const response = await apiInstances.get("/room");
+  const response = await apiInstances.get("/room/list");
   return response.data;
 };
 

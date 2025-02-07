@@ -6,15 +6,15 @@ import { ToastConfigs } from "~/configs/toast";
 import { getPayment, updatePayment } from "~/services/payment";
 
 export default function ConfirmPayment() {
-  const { booking_id, room_id } = useParams(); 
-  const { showToast } = ToastConfigs(); 
-  const navigate = useNavigate()
-  const [paymentMethod, setPaymentMethod] = useState(null); 
-  console.log(booking_id, room_id)
+  const { booking_id, room_id } = useParams();
+  const { showToast } = ToastConfigs();
+  const navigate = useNavigate();
+  const [paymentMethod, setPaymentMethod] = useState(null);
+  console.log(booking_id, room_id);
   const handleGetPayment = async () => {
     try {
       const res = await getPayment(booking_id, room_id);
-      setPaymentMethod(res.Data?.method || null); 
+      setPaymentMethod(res.Data?.method || null);
     } catch (error) {
       console.error("Error fetching payment details:", error);
       showToast({
@@ -33,13 +33,13 @@ export default function ConfirmPayment() {
         summary: "Payment Successful",
         detail: "Your payment has been processed successfully.",
       });
-      navigate("/")
+      navigate("/");
     } catch (error) {
-      
       showToast({
         severity: "error",
         summary: "Payment Failed",
-        detail: "An error occurred while processing the payment. Please try again.",
+        detail:
+          "An error occurred while processing the payment. Please try again.",
       });
     }
   };
@@ -55,7 +55,7 @@ export default function ConfirmPayment() {
   };
 
   useEffect(() => {
-    handleGetPayment();
+    handleGetPayment(); // eslint-disable-next-line
   }, []);
 
   return (
@@ -72,7 +72,11 @@ export default function ConfirmPayment() {
           </div>
         )}
       </div>
-      <Button label="Confirm Payment" onClick={confirmPayment} className="p-button-success" />
+      <Button
+        label="Confirm Payment"
+        onClick={confirmPayment}
+        className="p-button-success"
+      />
     </div>
   );
 }

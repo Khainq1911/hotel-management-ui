@@ -31,7 +31,7 @@ export default function Home() {
           error.response?.data?.Message ||
           "An error occurred while fetching rooms.",
       });
-    }
+    } // eslint-disable-next-line
   }, []);
 
   const handleBooking = async () => {

@@ -21,6 +21,7 @@ import { Dialog } from "primereact/dialog";
 import { TabMenu } from "primereact/tabmenu";
 import { ToastConfigs } from "~/configs/toast";
 import { confirmDialog, ConfirmDialog } from "primereact/confirmdialog";
+import { formatDate } from "~/configs/dayjs";
 export default function EmployeePage() {
   const [isUpdating, setIsUpdating] = useState(false);
   const [employeeDataTable, setEmployeeDataTable] = useState([]);
@@ -47,12 +48,12 @@ export default function EmployeePage() {
           username: employee.username,
           address: employee.address,
           email: employee.email,
-          dob: employee.dob,
+          dob: formatDate(employee.dob),
           age: employee.age,
           phone: employee.phone,
           position: employee.position,
           salary: employee.salary,
-          hired_date: employee.hired_date,
+          hired_date: formatDate(employee.hired_date),
         }))
       );
     } catch (error) {}
@@ -185,7 +186,6 @@ export default function EmployeePage() {
               tooltip="Click to show detail"
               tooltipOptions={{ position: "left" }}
               onClick={() => {
-                
                 setDefaultEmp(rowData);
                 setIsModalOpen(true);
               }}
