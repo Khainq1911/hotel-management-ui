@@ -6,16 +6,16 @@ export default function TyperoomModal({
   handleChangeInputFunc,
 }) {
   return (
-    <div className="grid gap-6 sm:grid-cols-1 lg:grid-cols-2">
+    <div className="grid gap-6 sm:grid-cols-1 lg:grid-cols-1">
       <div className="flex justify-center">
         <img
           src={detailTyperoom.img_url || "/placeholder-image.jpg"}
           alt="typeroom"
-          className="rounded shadow-lg w-full h-[200px] object-cover"
+          className="rounded shadow-lg w-full h-[150px] object-cover"
         />
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 lg:mt-5">
+      <div className="grid gap-8 grid-cols-1">
         <FloatLabel>
           <InputNumber
             required
