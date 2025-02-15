@@ -1,47 +1,67 @@
 import { useEffect, useState } from "react";
-import { getListShifts } from "~/services/scheduler";
+import { getScheduler, getSchedulerById } from "~/services/scheduler";
 import { Calendar } from "primereact/calendar";
 import { Badge } from "primereact/badge";
 import { formatDate } from "~/configs/dayjs";
-import Shift from "~/components/scheduler/detailScheduler";
-import "~/page/scheduler/scheduler.css";
 import { Button } from "primereact/button";
+import DetailScheduler from "~/components/scheduler/detailScheduler";
+import "~/page/scheduler/scheduler.css";
+import { getUser, isAdmin } from "~/hooks/useAuth";
 
 const SchedulerPage = () => {
   const [events, setEvents] = useState([]);
-  const [date, setDate] = useState(formatDate(new Date()));
+  const [date, setDate] = useState(formatDate(new Date(), "YYYY-MM-DD"));
   const [selectedEvents, setSelectedEvents] = useState([]);
 
-  const listShifts = async () => {
+  const handleChangeDay = (selectedDate) => {
+    const filteredEvents = events.filter(
+      (event) =>
+        formatDate(event.assignment_date, "YYYY-MM-DD") ===
+        formatDate(selectedDate, "YYYY-MM-DD")
+    );
+
+    setSelectedEvents(filteredEvents);
+  };
+
+  const handleGetScheduler = async () => {
     try {
-      const res = await getListShifts();
-      setEvents(res.Data);
+      if (isAdmin()) {
+        const res = await getScheduler();
+        setEvents(res.Data);
+        const filteredEvents = res.Data.filter(
+          (event) =>
+            formatDate(event.assignment_date, "YYYY-MM-DD") ===
+            formatDate(date, "YYYY-MM-DD")
+        );
+
+        setSelectedEvents(filteredEvents);
+      } else {
+        const EmployeeId = getUser().id;
+        const res = await getSchedulerById(EmployeeId);
+        console.log(res.Data);
+        setEvents(res.Data);
+      }
     } catch (error) {
       console.error("Error fetching shifts:", error);
     }
   };
 
   useEffect(() => {
-    listShifts();
+    handleGetScheduler(); // eslint-disable-next-line
   }, []);
-
-  const handleChangeDay = (selectedDate) => {
-    const filteredEvents = events.filter(
-      (event) =>
-        formatDate(event.start_time, "YYYY-MM-DD") ===
-        formatDate(selectedDate, "YYYY-MM-DD")
-    );
-    setSelectedEvents(filteredEvents);
-  };
 
   return (
     <div className="p-5">
       <div>
         <Button label="Add shift" />
-        <Button label="Import excel" severity="success" className="ml-2"/>
+        <Button label="Import excel" severity="success" className="ml-2" />
       </div>
       <div className="flex justify-between shadow-xl rounded-3xl max-w-[800px] mx-auto mt-10 overflow-hidden">
-        <Shift selectedEvents={selectedEvents} date={date} />
+        <DetailScheduler
+          selectedEvents={selectedEvents}
+          date={date}
+          handleGetScheduler={handleGetScheduler}
+        />
         <Calendar
           className="no-border-calendar p-5"
           value={date}
@@ -59,7 +79,7 @@ const SchedulerPage = () => {
 
             const hasEvent = events.some(
               (event) =>
-                formatDate(event.start_time, "YYYY-MM-DD") ===
+                formatDate(event.assignment_date, "YYYY-MM-DD") ===
                 formatDate(formattedCurrentDate, "YYYY-MM-DD")
             );
 

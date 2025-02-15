@@ -7,7 +7,7 @@ export const ToastConfigs = () => {
     severity = "info",
     summary = "",
     detail = "",
-    life = 3000,
+    life = 1000,
   }) => {
     toast.current?.show({ severity, summary, detail, life });
   };
