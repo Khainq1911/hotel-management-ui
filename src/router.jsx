@@ -28,6 +28,10 @@ const privateRoutes = [
     path: router.confirmPayment,
     component: ConfirmPayment,
   },
+  {
+    path: router.scheduler,
+    component: SchedulerPage,
+  },
 ];
 const adminRoutes = [
   {
@@ -35,16 +39,12 @@ const adminRoutes = [
     component: EmployeePage,
   },
   {
-    path: router.scheduler,
-    component: SchedulerPage,
+    path: router.shift,
+    component: ShiftPage,
   },
   {
     path: router.room,
     component: RoomPage,
-  },
-  {
-    path: router.shift,
-    component: ShiftPage,
   },
 ];
 

@@ -1,15 +1,25 @@
 import { useState } from "react";
 import { formatDate } from "~/configs/dayjs";
 import UpdateScheduler from "./updateModal";
+import { isAdmin } from "~/hooks/useAuth";
 
-export default function Shift({ selectedEvents, date }) {
+export default function DetailScheduler({
+  selectedEvents,
+  date,
+  handleGetScheduler,
+}) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [detailEvent, setDetailEvent] = useState(null);
   return (
     <div className="bg-[#2ECC71] w-[400px] text-white p-5 rounded-2xl shadow-lg font-sans">
-      <UpdateScheduler
-        isModalOpen={isModalOpen}
-        setIsModalOpen={setIsModalOpen}
-      />
+      {isAdmin() && (
+        <UpdateScheduler
+          detailEvent={detailEvent}
+          isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
+          handleGetScheduler={handleGetScheduler}
+        />
+      )}
       <div className="text-center font-bold mb-4">
         <p className="text-[64px] leading-none">{formatDate(date, "DD")}</p>
         <p className="text-[24px]">{formatDate(date, "MMMM")}</p>
@@ -23,14 +33,16 @@ export default function Shift({ selectedEvents, date }) {
             <li
               key={index}
               className="flex items-center justify-between gap-3 transition duration-300 ease-in-out cursor-pointer p-1 rounded hover:bg-[#FAD02E]"
-              onClick={() => setIsModalOpen(true)}
+              onClick={() => {
+                setDetailEvent(event);
+                setIsModalOpen(true);
+              }}
             >
               <div>
                 <p className="text-lg font-medium">
-                  {formatDate(event.start_time, "HH:mm")} -{" "}
-                  {formatDate(event.end_time, "HH:mm")}
+                  {event.start_time} - {event.end_time}
                 </p>
-                <p className="text-sm">{event.employee_name}</p>
+                <p className="text-sm">{event.username}</p>
               </div>
               {event?.status ? (
                 <p className="bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded-md shadow-sm">

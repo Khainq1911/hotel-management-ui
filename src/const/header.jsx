@@ -20,7 +20,7 @@ export const items = [
   {
     label: "Scheduler",
     icon: "pi pi-money-bill",
-    isAdmin: false,
+    isAdmin: true,
     url: "/scheduler",
   },
   {
