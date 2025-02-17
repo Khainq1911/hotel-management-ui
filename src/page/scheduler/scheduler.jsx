@@ -64,7 +64,7 @@ const SchedulerPage = () => {
         />
         <Calendar
           className="no-border-calendar p-5"
-          value={date}
+          value={date || new Date()}
           onChange={(e) => {
             setDate(e.value);
             handleChangeDay(e.value);
