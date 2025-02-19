@@ -29,4 +29,10 @@ export const items = [
     isAdmin: false,
     url: "/shift",
   },
+  {
+    label: "Salary",
+    icon: "pi pi-star",
+    isAdmin: false,
+    url: "/salary",
+  },
 ];

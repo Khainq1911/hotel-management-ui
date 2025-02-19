@@ -4,6 +4,7 @@ import Home from "./page/home";
 import LoginPage from "./page/login";
 import PaymentPage from "./page/payment";
 import RoomPage from "./page/room";
+import SalaryPage from "./page/salary";
 import SchedulerPage from "./page/scheduler/scheduler";
 import ShiftPage from "./page/shift";
 import ConfirmPayment from "./page/UpdatePayment";
@@ -37,6 +38,10 @@ const adminRoutes = [
   {
     path: router.employee,
     component: EmployeePage,
+  },
+  {
+    path: router.salary,
+    component: SalaryPage,
   },
   {
     path: router.shift,
