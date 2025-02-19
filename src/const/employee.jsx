@@ -1,5 +1,5 @@
 const columns = [
-  { field: "username", header: "Name" },
+  { field: "username", header: "Employee Name" },
   { field: "dob", header: "Birthday" },
   { field: "phone", header: "Phone Number" },
   { field: "role", header: "Role" },
