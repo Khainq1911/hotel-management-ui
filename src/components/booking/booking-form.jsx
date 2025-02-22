@@ -24,7 +24,7 @@ export default function BookingForm({
   const [bookingType, setBookingType] = useState("day");
   const [totalDate, setTotalDate] = useState();
   const [isExistingCustomer, setIsExistingCustomer] = useState(false);
-  const [searchInput, setSearchInput] = useState("");
+  const [searchInput, setSearchInput] = useState(null);
   const debouncedSearchInput = useDebounce(searchInput, 1000);
   const { showToast } = ToastConfigs();
 
@@ -37,27 +37,6 @@ export default function BookingForm({
 
   const handleInputChange = (e) => {
     setCustomerForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const fetchCustomerData = async (input) => {
-    try {
-      const res = await checkExitsCustomer(input);
-      setCustomerInfor(res);
-      setIsExistingCustomer(res.exists);
-      showToast({
-        severity: res.exists ? "success" : "error",
-        summary: res.exists ? "Customer Found" : "Customer Not Found",
-        detail: res.exists
-          ? "Customer information retrieved successfully."
-          : "No customer found with the provided information.",
-      });
-    } catch {
-      showToast({
-        severity: "error",
-        summary: "Error",
-        detail: "Failed to fetch customer information.",
-      });
-    }
   };
 
   const handleCreateCustomer = async (e) => {
@@ -80,6 +59,28 @@ export default function BookingForm({
   };
 
   useEffect(() => {
+    const fetchCustomerData = async () => {
+      try {
+        const res = await checkExitsCustomer(debouncedSearchInput);
+        setCustomerInfor(res);
+        setIsExistingCustomer(res.exists);
+        if (debouncedSearchInput) {
+          showToast({
+            severity: res.exists ? "success" : "error",
+            summary: res.exists ? "Customer Found" : "Customer Not Found",
+            detail: res.exists
+              ? "Customer information retrieved successfully."
+              : "No customer found with the provided information.",
+          });
+        }
+      } catch {
+        showToast({
+          severity: "error",
+          summary: "Error",
+          detail: "Failed to fetch customer information.",
+        });
+      }
+    };
     fetchCustomerData(debouncedSearchInput); // eslint-disable-next-line
   }, [debouncedSearchInput]);
   useEffect(() => {
